@@ -1,0 +1,11 @@
+
+flutter_native_splash:
+  color: "#F24472"  # Light theme color
+  color_dark: "#272727"  # Dark theme color
+  image: assets/logo/logoo.png  # Splash image for light theme
+  image_dark: assets/logo/logoo.png  # Splash image for dark theme
+  android_12:  # Android 12+ specific settings
+    color: "#F24472"  # Light theme color on Android 12+
+    color_dark: "#272727"  # Dark theme color on Android 12+
+    image: assets/logo/logoo.png  # Splash image for Android 12+
+    image_dark: assets/logo/logoo.png  # Dark theme splash image for Android 12+
