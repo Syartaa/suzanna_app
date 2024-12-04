@@ -4,12 +4,11 @@ import 'package:suzanne_app/components/containers/curved_edges_widget.dart';
 import 'package:suzanne_app/utilis/constants/colors.dart';
 
 class PrimaryHeaderContainer extends StatelessWidget {
-  const PrimaryHeaderContainer({
-    super.key,
-    required this.child,
-  });
+  const PrimaryHeaderContainer(
+      {super.key, required this.child, this.height = 380});
 
   final Widget child;
+  final double height;
 
   @override
   Widget build(BuildContext context) {
@@ -18,7 +17,7 @@ class PrimaryHeaderContainer extends StatelessWidget {
         color: const Color(0xFFDA90A4),
         padding: const EdgeInsets.all(0),
         child: SizedBox(
-          height: 380,
+          height: height,
           child: Stack(
             children: [
               Positioned(

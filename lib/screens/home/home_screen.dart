@@ -2,9 +2,18 @@ import 'package:flutter/material.dart';
 import 'package:suzanne_app/screens/home/widgets/content_slider.dart';
 import 'package:suzanne_app/screens/home/widgets/home_header.dart';
 import 'package:suzanne_app/screens/home/widgets/promo_slider.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class HomeScreen extends StatelessWidget {
-  const HomeScreen({super.key});
+  HomeScreen({super.key});
+
+  // URL list for events (example URLs, replace with actual URLs)
+  final List<String> eventLinks = [
+    'https://www.youtube.com/watch?v=nXs4UABX4Kc',
+    'https://www.rave-travel.com/event-details-en.nspx?eventid=3828',
+    'https://www.rave-travel.com/event-details-en.nspx?eventid=3828',
+    'https://www.rave-travel.com/event-details-en.nspx?eventid=3828',
+  ];
 
   @override
   Widget build(BuildContext context) {
@@ -26,6 +35,19 @@ class HomeScreen extends StatelessWidget {
           image: 'assets/images/podcast/4.jpg', title: 'Podcast 4'),
     ];
 
+    // Function to launch the URL using the new API
+    Future<void> _launchURL(String url) async {
+      final Uri uri = Uri.parse(url); // Convert string URL to Uri
+      try {
+        await launchUrl(uri,
+            mode: LaunchMode
+                .externalApplication); // Force opening in an external browser
+      } catch (e) {
+        print('Error launching URL: $e');
+        throw 'Could not launch $url';
+      }
+    }
+
     return Scaffold(
       body: SingleChildScrollView(
         child: Padding(
@@ -38,7 +60,7 @@ class HomeScreen extends StatelessWidget {
                 padding: EdgeInsets.all(8.0),
                 child: PromoSlider(),
               ),
-              SizedBox(
+              const SizedBox(
                 height: 24.0,
               ),
               Column(
@@ -56,7 +78,7 @@ class HomeScreen extends StatelessWidget {
                         ),
                         GestureDetector(
                           onTap: () {},
-                          child: Text(
+                          child: const Text(
                             "View all",
                             style: TextStyle(
                                 fontWeight: FontWeight.w400, fontSize: 14),
@@ -71,11 +93,12 @@ class HomeScreen extends StatelessWidget {
                     padding: EdgeInsets.zero, // Ensure no internal padding
                     onItemTap: (index) {
                       print("Tapped event item at index: $index");
+                      _launchURL(eventLinks[index]);
                     },
                   ),
                 ],
               ),
-              SizedBox(
+              const SizedBox(
                 height: 25.0,
               ),
               Column(
