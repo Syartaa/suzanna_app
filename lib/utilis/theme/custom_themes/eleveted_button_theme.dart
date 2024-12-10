@@ -11,7 +11,7 @@ class SElevetedButtonTheme {
       backgroundColor: Color(0xFFDA90A4), // Deep Purple
       disabledForegroundColor: Colors.grey,
       disabledBackgroundColor: Colors.grey,
-      side: BorderSide(color: Color(0xFFDA90A4)), // Deep Purple
+      side: const BorderSide(color: Color(0xFFDA90A4)), // Deep Purple
       padding: const EdgeInsets.symmetric(vertical: 18),
       textStyle: GoogleFonts.poppins(
           fontSize: 16, color: Colors.white, fontWeight: FontWeight.w600),
@@ -26,7 +26,7 @@ class SElevetedButtonTheme {
       backgroundColor: Color(0xFFDA90A4), // Deep Purple
       disabledForegroundColor: Colors.grey,
       disabledBackgroundColor: Colors.grey,
-      side: BorderSide(color: Color(0xFFDA90A4)), // Deep Purple
+      side: const BorderSide(color: Color(0xFFDA90A4)), // Deep Purple
       padding: const EdgeInsets.symmetric(vertical: 18),
       textStyle: GoogleFonts.poppins(
           fontSize: 16, color: Colors.white, fontWeight: FontWeight.w600),

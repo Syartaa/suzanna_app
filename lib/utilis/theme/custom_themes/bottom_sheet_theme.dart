@@ -7,14 +7,14 @@ class SBottomSheetTheme {
     backgroundColor: Colors.white,
     showDragHandle: true,
     modalBackgroundColor: Colors.white,
-    constraints: BoxConstraints(minWidth: double.infinity),
+    constraints: const BoxConstraints(minWidth: double.infinity),
     shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
   );
   static BottomSheetThemeData darkBottomSheetThemeData = BottomSheetThemeData(
     backgroundColor: Colors.black,
     showDragHandle: true,
     modalBackgroundColor: Colors.black,
-    constraints: BoxConstraints(minWidth: double.infinity),
+    constraints: const BoxConstraints(minWidth: double.infinity),
     shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
   );
 }

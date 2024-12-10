@@ -1,15 +1,12 @@
-// ignore_for_file: prefer_const_constructors
-
 import 'package:flutter/material.dart';
 import 'package:suzanne_app/components/widgets/appbar.dart';
-import 'package:suzanne_app/screens/home/widgets/primary_header_container.dart';
-import 'package:suzanne_app/screens/podcasts/widgets/podcast_card.dart';
 import 'package:suzanne_app/components/widgets/promo_banner.dart';
+import 'package:suzanne_app/screens/events/widgets/event_card.dart';
+import 'package:suzanne_app/screens/home/widgets/primary_header_container.dart';
 
-class PodcastsScreen extends StatelessWidget {
-  const PodcastsScreen({super.key});
+class EventScreen extends StatelessWidget {
+  const EventScreen({super.key});
 
-//'assets/images/promo/promo.jpg'
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -18,7 +15,7 @@ class PodcastsScreen extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             PrimaryHeaderContainer(
-              height: 430,
+              height: 420,
               child: Column(
                 children: [
                   SAppBar(
@@ -26,7 +23,7 @@ class PodcastsScreen extends StatelessWidget {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Text(
-                          "Podcats",
+                          "Events",
                           style: Theme.of(context)
                               .textTheme
                               .headlineSmall!
@@ -36,25 +33,26 @@ class PodcastsScreen extends StatelessWidget {
                     ),
                   ),
                   PromoBanner(
-                    imagePath: 'assets/images/promo/promo.jpg',
-                    title: 'Poduct House',
-                    onListenNowPressed: () {},
-                    buttonTitle: 'Listen Now',
-                  ),
+                      imagePath: 'assets/images/promo/promo2.jpg',
+                      title: 'Events',
+                      textColor: Colors.black,
+                      buttonColor: Colors.orange,
+                      onListenNowPressed: () {},
+                      buttonTitle: 'Book Now')
                 ],
               ),
             ),
-            SizedBox(
+            const SizedBox(
               height: 16.0,
             ),
-            Padding(
-              padding: const EdgeInsets.only(left: 24.0),
+            const Padding(
+              padding: EdgeInsets.only(left: 24.0),
               child: Text(
                 "Recent Podcast",
                 style: TextStyle(
                     fontSize: 25,
                     fontWeight: FontWeight.bold,
-                    color: const Color.fromARGB(144, 236, 66, 123)),
+                    color: Color.fromARGB(144, 236, 66, 123)),
               ),
             ),
             GridView.builder(
@@ -67,16 +65,17 @@ class PodcastsScreen extends StatelessWidget {
                 crossAxisSpacing: 5, // Spacing between columns
                 mainAxisSpacing: 10, // Spacing between rows
                 childAspectRatio:
-                    0.69, // Adjust this ratio based on card design
+                    0.71, // Adjust this ratio based on card design
               ),
               itemCount: 3, // Number of cards
               itemBuilder: (context, index) {
-                return PodcastCard(
+                return const EventCard(
                   title: 'Life is more youthful',
-                  image: 'assets/images/podcast/2.jpg',
-                  name: 'Mariana Jane',
-                  podcast: 'Podcastly',
-                  url: 'https://www.youtube.com/watch?v=q1I77BC0BeA',
+                  image: 'assets/images/events/3.jpg',
+                  url:
+                      'https://www.rave-travel.com/event-details-en.nspx?eventid=3830',
+                  organizerName: 'Mariana Jane',
+                  eventType: 'Events',
                 );
               },
             ),

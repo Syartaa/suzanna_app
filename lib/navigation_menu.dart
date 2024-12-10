@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:suzanne_app/screens/events/event_screen.dart';
 import 'package:suzanne_app/screens/home/home_screen.dart';
 import 'package:suzanne_app/screens/podcasts/podcasts_screen.dart';
+import 'package:suzanne_app/screens/profile/profile_screen.dart';
+
 import 'package:suzanne_app/utilis/helpers/helper_functions.dart';
 
 final selectedIndexProvider = StateProvider((ref) => 0);
@@ -48,13 +51,9 @@ class NavigationMenu extends ConsumerWidget {
       case 1:
         return PodcastsScreen();
       case 2:
-        return Container(
-          color: Colors.red,
-        );
+        return EventScreen();
       case 3:
-        return Container(
-          color: Colors.blue,
-        );
+        return ProfileScreen();
       default:
         return HomeScreen();
     }

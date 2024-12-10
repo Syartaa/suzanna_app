@@ -8,7 +8,7 @@ class SOutlinedButtonTheme {
     style: OutlinedButton.styleFrom(
       elevation: 0,
       foregroundColor: Colors.black,
-      side: BorderSide(color: Color(0xFFDA90A4)), // Vibrant Pinkish Red
+      side: const BorderSide(color: Color(0xFFDA90A4)), // Vibrant Pinkish Red
       padding: const EdgeInsets.symmetric(vertical: 16, horizontal: 20),
       textStyle: GoogleFonts.poppins(
           fontSize: 16, color: Colors.black, fontWeight: FontWeight.w600),
@@ -20,7 +20,7 @@ class SOutlinedButtonTheme {
     style: OutlinedButton.styleFrom(
       elevation: 0,
       foregroundColor: Colors.white,
-      side: BorderSide(color: Color(0xFFDA90A4)), // Vibrant Pinkish Red
+      side: const BorderSide(color: Color(0xFFDA90A4)), // Vibrant Pinkish Red
       padding: const EdgeInsets.symmetric(vertical: 16, horizontal: 20),
       textStyle: GoogleFonts.poppins(
           fontSize: 16, color: Colors.white, fontWeight: FontWeight.w600),
