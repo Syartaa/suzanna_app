@@ -48,7 +48,7 @@ class EventScreen extends StatelessWidget {
             const Padding(
               padding: EdgeInsets.only(left: 24.0),
               child: Text(
-                "Recent Podcast",
+                "Recent Events",
                 style: TextStyle(
                     fontSize: 25,
                     fontWeight: FontWeight.bold,
@@ -57,12 +57,12 @@ class EventScreen extends StatelessWidget {
             ),
             GridView.builder(
               physics:
-                  NeverScrollableScrollPhysics(), // Disable scrolling for GridView
+                  const NeverScrollableScrollPhysics(), // Disable scrolling for GridView
               shrinkWrap:
                   true, // Allow GridView to fit within SingleChildScrollView
-              gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+              gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
                 crossAxisCount: 2, // Number of columns
-                crossAxisSpacing: 5, // Spacing between columns
+                crossAxisSpacing: 4, // Spacing between columns
                 mainAxisSpacing: 10, // Spacing between rows
                 childAspectRatio:
                     0.71, // Adjust this ratio based on card design

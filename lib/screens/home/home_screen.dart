@@ -3,6 +3,8 @@ import 'package:suzanne_app/screens/home/widgets/content_slider.dart';
 import 'package:suzanne_app/screens/home/widgets/home_header.dart';
 import 'package:suzanne_app/screens/home/widgets/promo_slider.dart';
 import 'package:url_launcher/url_launcher.dart';
+import 'package:suzanne_app/screens/events/event_screen.dart';
+import 'package:suzanne_app/screens/podcasts/podcasts_screen.dart';
 
 class HomeScreen extends StatelessWidget {
   HomeScreen({super.key});
@@ -36,7 +38,7 @@ class HomeScreen extends StatelessWidget {
     ];
 
     // Function to launch the URL using the new API
-    Future<void> _launchURL(String url) async {
+    Future<void> launchURL(String url) async {
       final Uri uri = Uri.parse(url); // Convert string URL to Uri
       try {
         await launchUrl(uri,
@@ -77,7 +79,14 @@ class HomeScreen extends StatelessWidget {
                               fontWeight: FontWeight.bold, fontSize: 21),
                         ),
                         GestureDetector(
-                          onTap: () {},
+                          onTap: () {
+                            // Navigate to the Events screen
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => const EventScreen()),
+                            );
+                          },
                           child: const Text(
                             "View all",
                             style: TextStyle(
@@ -93,7 +102,7 @@ class HomeScreen extends StatelessWidget {
                     padding: EdgeInsets.zero, // Ensure no internal padding
                     onItemTap: (index) {
                       print("Tapped event item at index: $index");
-                      _launchURL(eventLinks[index]);
+                      launchURL(eventLinks[index]);
                     },
                   ),
                 ],
@@ -115,7 +124,14 @@ class HomeScreen extends StatelessWidget {
                               fontWeight: FontWeight.bold, fontSize: 21),
                         ),
                         GestureDetector(
-                          onTap: () {},
+                          onTap: () {
+                            // Navigate to the Podcasts screen
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => const PodcastsScreen()),
+                            );
+                          },
                           child: const Text(
                             "View all",
                             style: TextStyle(

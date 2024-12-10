@@ -1,3 +1,5 @@
+// ignore_for_file: prefer_const_constructors
+
 import 'package:flutter/material.dart';
 import 'package:iconsax/iconsax.dart';
 import 'package:url_launcher/url_launcher.dart';
@@ -97,7 +99,7 @@ class EventCard extends StatelessWidget {
               alignment: Alignment.centerRight,
               child: IconButton(
                 onPressed: () => _launchURL(url),
-                icon: Icon(Iconsax.play_circle, color: Colors.pinkAccent),
+                icon: Icon(Iconsax.calendar, color: Colors.pinkAccent),
               ),
             ),
           ],
