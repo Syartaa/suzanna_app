@@ -67,7 +67,7 @@ class EventScreen extends StatelessWidget {
                 childAspectRatio:
                     0.71, // Adjust this ratio based on card design
               ),
-              itemCount: 3, // Number of cards
+              itemCount: 6, // Number of cards
               itemBuilder: (context, index) {
                 return const EventCard(
                   title: 'Life is more youthful',

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:suzanne_app/data/podcast_dummydata.dart';
 import 'package:suzanne_app/models/podcasts.dart';
 
 class PodcastProvider extends ChangeNotifier {
@@ -19,23 +20,7 @@ class PodcastProvider extends ChangeNotifier {
     await Future.delayed(Duration(seconds: 2)); // Simulate a delay
 
     // A sample list of podcasts (replace this with actual API data if needed)
-    _podcasts = [
-      Podcast(
-        image: 'assets/images/podcast/2.jpg',
-        title: 'Life is more youthful',
-        name: 'Mariana Jane',
-        podcast: 'Podcastly',
-        url: 'https://www.youtube.com/watch?v=q1I77BC0BeA',
-      ),
-      Podcast(
-        image: 'assets/images/podcast/3.jpg',
-        title: 'Growth Mindset',
-        name: 'John Doe',
-        podcast: 'Mindset Show',
-        url: 'https://www.youtube.com/watch?v=xyz123',
-      ),
-      // Add more podcasts here
-    ];
+    _podcasts = dummyPodcasts;
 
     notifyListeners(); // Notify listeners after fetching data
   }

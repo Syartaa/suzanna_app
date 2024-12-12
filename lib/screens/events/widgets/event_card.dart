@@ -40,7 +40,7 @@ class EventCard extends StatelessWidget {
         padding: EdgeInsets.all(12.0),
         decoration: BoxDecoration(
           gradient: LinearGradient(
-            colors: [Color(0xFFDA90A4), Colors.white],
+            colors: const [Color(0xFFDA90A4), Colors.white],
             begin: Alignment.topLeft,
             end: Alignment.bottomRight,
           ),
@@ -94,12 +94,12 @@ class EventCard extends StatelessWidget {
                 color: Colors.grey[600],
               ),
             ),
-            Spacer(),
+            // Spacer(),
             Align(
               alignment: Alignment.centerRight,
               child: IconButton(
                 onPressed: () => _launchURL(url),
-                icon: Icon(Iconsax.calendar, color: Colors.pinkAccent),
+                icon: Icon(Iconsax.calendar),
               ),
             ),
           ],

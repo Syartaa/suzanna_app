@@ -37,7 +37,7 @@ class PodcastsScreen extends StatelessWidget {
                   ),
                   PromoBanner(
                     imagePath: 'assets/images/promo/promo.jpg',
-                    title: 'Poduct House',
+                    title: 'Podcast House',
                     onListenNowPressed: () {},
                     buttonTitle: 'Listen Now',
                   ),
