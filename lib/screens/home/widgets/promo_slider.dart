@@ -39,8 +39,9 @@ class PromoSlider extends ConsumerWidget {
               CircularContainer(
                 width: 20,
                 height: 4,
-                backgroundColor:
-                    carouselCurrentIndex == i ? Color(0xFFDA90A4) : Colors.grey,
+                backgroundColor: carouselCurrentIndex == i
+                    ? const Color(0xFFDA90A4)
+                    : Colors.grey,
                 margin: const EdgeInsets.only(right: 10),
               ),
           ],

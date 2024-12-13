@@ -19,16 +19,16 @@ class OnboardingScreen extends ConsumerWidget {
             controller: controller.pageController,
             onPageChanged: controller.updatePageIndicator,
             children: const [
-              onBoardingPage(
+              OnBoardingPage(
                   image: 'assets/images/onboarding_images/1.gif',
                   title: 'Discover, Engage, and Empower',
                   subTitle:
                       'Your go-to platform for local events, podcasts, and creative industries in Albania and Kosovo.'),
-              onBoardingPage(
+              OnBoardingPage(
                   image: 'assets/images/onboarding_images/2.gif',
                   title: 'Curated Events Just for You',
                   subTitle: 'Find and attend the best events in your region.'),
-              onBoardingPage(
+              OnBoardingPage(
                   image: 'assets/images/onboarding_images/3.gif',
                   title: 'Tune into the Suzanne Podcast',
                   subTitle:
@@ -50,7 +50,7 @@ class OnboardingScreen extends ConsumerWidget {
           OnBoardingNavigation(),
 
           // Next Button
-          OnBoardingNextButton()
+          const OnBoardingNextButton()
         ],
       ),
     );

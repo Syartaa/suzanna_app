@@ -21,10 +21,10 @@ class SearchContainer extends StatelessWidget {
     final dark = SHelperFunctions.isDarkMode(context);
 
     return Padding(
-      padding: EdgeInsets.symmetric(horizontal: 24.0),
+      padding: const EdgeInsets.symmetric(horizontal: 24.0),
       child: Container(
         width: MediaQuery.of(context).size.width,
-        padding: EdgeInsets.all(16.0),
+        padding: const EdgeInsets.all(16.0),
         decoration: BoxDecoration(
           color: showBackgorund
               ? dark

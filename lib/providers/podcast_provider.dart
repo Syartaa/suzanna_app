@@ -17,7 +17,7 @@ class PodcastProvider extends ChangeNotifier {
 
   // Example method to simulate fetching data
   Future<void> fetchPodcasts() async {
-    await Future.delayed(Duration(seconds: 2)); // Simulate a delay
+    await Future.delayed(const Duration(seconds: 2)); // Simulate a delay
 
     // A sample list of podcasts (replace this with actual API data if needed)
     _podcasts = dummyPodcasts;

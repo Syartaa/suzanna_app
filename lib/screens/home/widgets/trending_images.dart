@@ -20,7 +20,7 @@ class TrendingImages extends StatelessWidget {
     return GestureDetector(
       onTap: onTap,
       child: Padding(
-        padding: EdgeInsets.all(8.0),
+        padding: const EdgeInsets.all(8.0),
         child: Column(
           children: [
             Container(
@@ -37,7 +37,7 @@ class TrendingImages extends StatelessWidget {
                 ),
               ),
             ),
-            SizedBox(height: 16.0 / 2),
+            const SizedBox(height: 16.0 / 2),
             SizedBox(
               width: 66,
               child: Text(

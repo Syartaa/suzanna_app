@@ -8,13 +8,13 @@ class ProfileTextField extends StatelessWidget {
   final VoidCallback? onTap;
 
   const ProfileTextField({
-    Key? key,
+    super.key,
     required this.controller,
     required this.labelText,
     this.keyboardType = TextInputType.text,
     this.readOnly = false,
     this.onTap,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -29,19 +29,20 @@ class ProfileTextField extends StatelessWidget {
         fillColor: Colors.white.withOpacity(0.1),
         border: OutlineInputBorder(
           borderRadius: BorderRadius.circular(10.0),
-          borderSide: BorderSide(color: Colors.white),
+          borderSide: const BorderSide(color: Colors.white),
         ),
         enabledBorder: OutlineInputBorder(
           borderRadius: BorderRadius.circular(10.0),
-          borderSide: BorderSide(color: Colors.white),
+          borderSide: const BorderSide(color: Colors.white),
         ),
         focusedBorder: OutlineInputBorder(
           borderRadius: BorderRadius.circular(10.0),
-          borderSide: BorderSide(color: Colors.redAccent),
+          borderSide: const BorderSide(color: Colors.redAccent),
         ),
-        labelStyle: TextStyle(color: Colors.white), // Customize label color
+        labelStyle:
+            const TextStyle(color: Colors.white), // Customize label color
       ),
-      style: TextStyle(color: Colors.white), // Customize text color
+      style: const TextStyle(color: Colors.white), // Customize text color
     );
   }
 }

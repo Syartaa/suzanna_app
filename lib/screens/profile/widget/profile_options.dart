@@ -7,11 +7,11 @@ class ProfileOption extends StatelessWidget {
   final VoidCallback onTap;
 
   const ProfileOption({
-    Key? key,
+    super.key,
     required this.title,
     this.icon = Icons.account_circle_sharp,
     required this.onTap,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -21,7 +21,7 @@ class ProfileOption extends StatelessWidget {
         padding: const EdgeInsets.all(8.0),
         margin: const EdgeInsets.all(8.0),
         decoration: BoxDecoration(
-          color: Color.fromARGB(186, 218, 144, 164),
+          color: const Color.fromARGB(186, 218, 144, 164),
           borderRadius: BorderRadius.circular(10),
         ),
         child: Row(

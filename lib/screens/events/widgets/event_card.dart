@@ -1,105 +1,121 @@
-// ignore_for_file: prefer_const_constructors
-
 import 'package:flutter/material.dart';
+import 'package:suzanne_app/models/events.dart';
+import 'package:suzanne_app/screens/events/event_detail_screen.dart';
 import 'package:iconsax/iconsax.dart';
-import 'package:url_launcher/url_launcher.dart';
 
 class EventCard extends StatelessWidget {
-  const EventCard({
-    super.key,
-    required this.image,
-    required this.title,
-    required this.organizerName,
-    required this.eventType,
-    required this.url,
-  });
+  final Event event;
 
-  final String image, title, organizerName, eventType, url;
-
-  // Function to launch the URL using the new API
-  Future<void> _launchURL(String url) async {
-    final Uri uri = Uri.parse(url); // Convert string URL to Uri
-    try {
-      await launchUrl(
-        uri,
-        mode: LaunchMode
-            .externalApplication, // Force opening in an external browser
-      );
-    } catch (e) {
-      print('Error launching URL: $e');
-      throw 'Could not launch $url';
-    }
-  }
+  const EventCard({Key? key, required this.event}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: EdgeInsets.all(8.0),
-      child: Container(
-        width: 180,
-        padding: EdgeInsets.all(12.0),
-        decoration: BoxDecoration(
-          gradient: LinearGradient(
-            colors: const [Color(0xFFDA90A4), Colors.white],
-            begin: Alignment.topLeft,
-            end: Alignment.bottomRight,
+    // Get screen width for responsive scaling
+    final double screenWidth = MediaQuery.of(context).size.width;
+
+    return GestureDetector(
+      onTap: () {
+        Navigator.push(
+          context,
+          MaterialPageRoute(
+            builder: (context) => EventDetailScreen(event: event),
           ),
-          borderRadius: BorderRadius.circular(16),
+        );
+      },
+      child: Container(
+        width: screenWidth * 0.45, // Adjust width based on screen size
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(8.0),
+          color: Colors.white,
           boxShadow: [
             BoxShadow(
-              color: Colors.grey.withOpacity(0.3),
-              blurRadius: 10,
-              offset: Offset(0, 4),
+              color: Colors.black.withOpacity(0.1),
+              blurRadius: 4,
+              offset: Offset(0, 2),
             ),
           ],
         ),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
+            // Dynamic height for the image
             SizedBox(
-              height: 120, // Fixed height for the image
-              width: double.infinity, // Matches parent width
+              height:
+                  screenWidth * 0.3, // Dynamically adjust based on screen width
+              width: double.infinity, // Match the width of the container
               child: ClipRRect(
-                borderRadius: BorderRadius.circular(12),
+                borderRadius: BorderRadius.only(
+                  topLeft: Radius.circular(8.0),
+                  topRight: Radius.circular(8.0),
+                ),
                 child: Image.asset(
-                  image,
-                  fit: BoxFit.cover, // Ensures the image covers the space
+                  event.image,
+                  fit: BoxFit.cover, // Ensures the image covers the box
                 ),
               ),
             ),
-            SizedBox(height: 10),
-            Text(
-              title,
-              maxLines: 1,
-              overflow: TextOverflow.ellipsis,
-              style: TextStyle(
-                fontSize: 16,
-                fontWeight: FontWeight.bold,
-                color: Colors.black87,
-              ),
-            ),
-            SizedBox(height: 8),
-            Text(
-              organizerName,
-              style: TextStyle(
-                fontSize: 14,
-                fontWeight: FontWeight.w600,
-                color: Colors.black54,
-              ),
-            ),
-            Text(
-              eventType,
-              style: TextStyle(
-                fontSize: 12,
-                color: Colors.grey[600],
-              ),
-            ),
-            // Spacer(),
-            Align(
-              alignment: Alignment.centerRight,
-              child: IconButton(
-                onPressed: () => _launchURL(url),
-                icon: Icon(Iconsax.calendar),
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  // Event title (with truncation if it's long)
+                  Text(
+                    event.title,
+                    style: TextStyle(
+                      fontSize: 14,
+                      fontWeight: FontWeight.bold,
+                    ),
+                    maxLines: 1, // Limit title to 1 line
+                    overflow: TextOverflow.ellipsis, // Truncate with ellipsis
+                  ),
+                  SizedBox(height: 4),
+                  // Event date
+                  Text(
+                    event.date,
+                    style: TextStyle(
+                      fontSize: 12,
+                      color: Colors.grey,
+                    ),
+                    maxLines: 1,
+                    overflow: TextOverflow.ellipsis, // Prevent overflow
+                  ),
+                  SizedBox(height: 8),
+                  // Row with "Book Now" text and calendar icon
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      // "Book Now" text
+                      Flexible(
+                        child: Text(
+                          "Book Now", // Or any relevant text for the event
+                          style: TextStyle(
+                            fontSize: 12,
+                            color: Colors
+                                .blue, // Change the color to fit your theme
+                            fontWeight: FontWeight.bold,
+                          ),
+                          maxLines: 1, // Limit to 1 line
+                          overflow: TextOverflow.ellipsis, // Prevent overflow
+                        ),
+                      ),
+                      // Calendar Icon Button
+                      IconButton(
+                        icon: Icon(Iconsax.calendar),
+                        onPressed: () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => EventDetailScreen(
+                                event: event,
+                              ),
+                            ),
+                          );
+                        },
+                      ),
+                    ],
+                  ),
+                ],
               ),
             ),
           ],

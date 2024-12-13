@@ -3,6 +3,8 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:suzanne_app/providers/onboarding_provider.dart';
 
 class OnBoardingNextButton extends ConsumerWidget {
+  const OnBoardingNextButton({super.key});
+
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final onboardingState = ref.watch(onboardingStateProvider);
@@ -24,7 +26,7 @@ class OnBoardingNextButton extends ConsumerWidget {
           padding: const EdgeInsets.symmetric(horizontal: 8.0),
           child: Text(
             onboardingState.currentPageIndex == 2 ? 'Get Started' : 'Next',
-            style: TextStyle(color: const Color.fromARGB(255, 250, 249, 249)),
+            style: const TextStyle(color: Color.fromARGB(255, 250, 249, 249)),
           ),
         ),
       ),

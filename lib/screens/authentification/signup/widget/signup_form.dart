@@ -91,26 +91,28 @@ class SignupForm extends StatelessWidget {
                 onChanged: (value) {},
               ),
               //Text("I agree to Privacy Policy and Terms of use"),
-              Text.rich(TextSpan(children: [
-                TextSpan(
-                    text: "I agree to ",
-                    style: Theme.of(context).textTheme.bodySmall),
-                TextSpan(
-                    text: "Privacy Policy",
-                    style: Theme.of(context)
-                        .textTheme
-                        .bodyMedium!
-                        .apply(color: dark ? Colors.white : Colors.blue)),
-                TextSpan(
-                    text: " and ",
-                    style: Theme.of(context).textTheme.bodySmall),
-                TextSpan(
-                    text: "Terms of use",
-                    style: Theme.of(context)
-                        .textTheme
-                        .bodyMedium!
-                        .apply(color: dark ? Colors.white : Colors.blue)),
-              ]))
+              Expanded(
+                child: Text.rich(TextSpan(children: [
+                  TextSpan(
+                      text: "I agree to ",
+                      style: Theme.of(context).textTheme.bodySmall),
+                  TextSpan(
+                      text: "Privacy Policy",
+                      style: Theme.of(context)
+                          .textTheme
+                          .bodyMedium!
+                          .apply(color: dark ? Colors.white : Colors.blue)),
+                  TextSpan(
+                      text: " and ",
+                      style: Theme.of(context).textTheme.bodySmall),
+                  TextSpan(
+                      text: "Terms of use",
+                      style: Theme.of(context)
+                          .textTheme
+                          .bodyMedium!
+                          .apply(color: dark ? Colors.white : Colors.blue)),
+                ])),
+              )
             ],
           ),
           const SizedBox(height: 20.0),

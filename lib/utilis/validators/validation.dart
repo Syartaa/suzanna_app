@@ -18,13 +18,13 @@ class SValidator {
     }
 
     if (value.length < 6) {
-      return 'Password must be at least 6 characters long.';
+      return 'Password must be at least 6 characters long. ';
     }
     if (value.contains(r'[0-9]')) {
-      return 'Password must have at least one number.';
+      return 'Password must have at least one number. ';
     }
     if (value.contains(r'[!@#$%^&*(),.?":{}|<>]')) {
-      return 'Password must have at least one special character.';
+      return 'Password must have at least one special character. ';
     }
 
     return null;
