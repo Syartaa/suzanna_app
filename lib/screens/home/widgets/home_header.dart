@@ -14,6 +14,7 @@ class HomeHeader extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return PrimaryHeaderContainer(
+      height: 130,
       child: Column(
         children: [
           // AppBar Section
@@ -46,16 +47,7 @@ class HomeHeader extends StatelessWidget {
               const SizedBox(width: 16),
             ],
           ),
-          const SizedBox(height: 32.0),
-
-          // Search Bar
-          SearchContainer(
-            text: "Search",
-          ),
-          const SizedBox(height: 16.0),
-
-          // Categories Section
-          CategorySection(),
+          // const SizedBox(height: 32.0),
         ],
       ),
     );

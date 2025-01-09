@@ -1,27 +1,25 @@
-import 'package:flutter/material.dart';
-import 'package:suzanne_app/data/podcast_dummydata.dart';
-import 'package:suzanne_app/models/podcasts.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:suzanne_app/providers/api_service_provider.dart';
+import 'package:suzanne_app/services/api_service.dart';
 
-class PodcastProvider extends ChangeNotifier {
-  // List of podcasts
-  List<Podcast> _podcasts = [];
+class PodcastNotifier extends StateNotifier<AsyncValue<List<dynamic>>> {
+  PodcastNotifier(this.apiService) : super(const AsyncValue.loading());
 
-  // Getter to fetch podcasts
-  List<Podcast> get podcasts => _podcasts;
+  final ApiService apiService;
 
-  // Method to set the list of podcasts
-  void setPodcasts(List<Podcast> podcasts) {
-    _podcasts = podcasts;
-    notifyListeners(); // Notify listeners when the data changes
-  }
-
-  // Example method to simulate fetching data
-  Future<void> fetchPodcasts() async {
-    await Future.delayed(const Duration(seconds: 2)); // Simulate a delay
-
-    // A sample list of podcasts (replace this with actual API data if needed)
-    _podcasts = dummyPodcasts;
-
-    notifyListeners(); // Notify listeners after fetching data
+  Future<void> loadPodcasts() async {
+    try {
+      state = const AsyncValue.loading(); // Set the loading state
+      final response = await apiService.fetchPodcasts();
+      state = AsyncValue.data(response); // Update with fetched data
+    } catch (e, stackTrace) {
+      state = AsyncValue.error(e, stackTrace); // Handle errors gracefully
+    }
   }
 }
+
+final podcastProvider =
+    StateNotifierProvider<PodcastNotifier, AsyncValue<List<dynamic>>>((ref) {
+  final apiService = ref.read(apiServiceProvider);
+  return PodcastNotifier(apiService)..loadPodcasts();
+});

@@ -1,52 +1,75 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:suzanne_app/providers/podcast_provider.dart';
 import 'package:suzanne_app/screens/home/widgets/trending_images.dart';
 
-// Define a model to represent each item
 class ContentSliderItem {
   final String image;
   final String title;
+  final String hostName;
 
-  ContentSliderItem({required this.image, required this.title});
+  ContentSliderItem({
+    required this.image,
+    required this.title,
+    required this.hostName,
+  });
 }
 
-class ContentSlider extends StatelessWidget {
-  const ContentSlider(
-      {super.key,
-      required this.items,
-      this.height = 100,
-      this.padding,
-      this.onItemTap});
+class ContentSlider extends ConsumerWidget {
+  const ContentSlider({
+    super.key,
+    this.height = 100,
+    this.padding,
+    this.onItemTap,
+    required List<ContentSliderItem> items,
+  });
 
-  final List<ContentSliderItem> items; // List of items to display
-  final double height; // Height of the ContentSlider
-  final EdgeInsetsGeometry? padding; // Optional padding
-  final void Function(int)? onItemTap; // Optional callback for tapping an item
+  final double height;
+  final EdgeInsetsGeometry? padding;
+  final void Function(int)? onItemTap;
 
   @override
-  Widget build(BuildContext context) {
-    return Padding(
-      padding: padding ?? EdgeInsets.zero, // Use custom padding if provided
-      child: SizedBox(
-        height: height, // Set the height of the ContentSlider
-        child: ListView.builder(
-          scrollDirection: Axis.horizontal,
-          itemCount: items.length, // Dynamically set the number of items
-          itemBuilder: (context, index) {
-            final item = items[index]; // Get the current item
+  Widget build(BuildContext context, WidgetRef ref) {
+    final podcastState = ref.watch(podcastProvider);
 
-            return GestureDetector(
-              onTap: onItemTap != null
-                  ? () => onItemTap!(index)
-                  : null, // Handle item tap if callback is provided
-              child: TrendingImages(
-                image: item.image,
-                title: item.title,
-              ),
-            );
-          },
-        ),
+    return podcastState.when(
+      data: (podcasts) {
+        final items = podcasts.map<ContentSliderItem>((podcast) {
+          final imageUrl = podcast['thumbnail']?.startsWith('http') ?? false
+              ? podcast['thumbnail']
+              : 'https://suzanne-podcast.laratest-app.com/${podcast['thumbnail']}';
+          return ContentSliderItem(
+            image: imageUrl,
+            title: podcast['title'] ?? 'No Title',
+            hostName: podcast['host_name'] ?? 'Unknown Host',
+          );
+        }).toList();
+
+        return Padding(
+          padding: padding ?? EdgeInsets.zero,
+          child: SizedBox(
+            height: height,
+            child: ListView.builder(
+              scrollDirection: Axis.horizontal,
+              itemCount: items.length,
+              itemBuilder: (context, index) {
+                final item = items[index];
+                return GestureDetector(
+                  onTap: onItemTap != null ? () => onItemTap!(index) : null,
+                  child: TrendingImages(
+                    image: item.image,
+                    title: '${item.title}\nHost: ${item.hostName}',
+                  ),
+                );
+              },
+            ),
+          ),
+        );
+      },
+      loading: () => const Center(child: CircularProgressIndicator()),
+      error: (error, stack) => Center(
+        child: Text('Error: $error'),
       ),
     );
-    ;
   }
 }

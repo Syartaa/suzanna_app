@@ -49,7 +49,7 @@ class NavigationMenu extends ConsumerWidget {
       case 0:
         return HomeScreen();
       case 1:
-        return PodcastsScreen();
+        return PodcastListScreen();
       case 2:
         return EventScreen();
       case 3:

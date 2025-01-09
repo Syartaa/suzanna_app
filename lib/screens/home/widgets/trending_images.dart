@@ -10,13 +10,16 @@ class TrendingImages extends StatelessWidget {
     this.onTap,
   });
 
-  final String image, title;
+  final String image;
+  final String title;
   final Color textColor;
   final Color? backgroundColor;
   final void Function()? onTap;
 
   @override
   Widget build(BuildContext context) {
+    final bool isNetworkImage = image.startsWith('http'); // Check if it's a URL
+
     return GestureDetector(
       onTap: onTap,
       child: Padding(
@@ -28,16 +31,34 @@ class TrendingImages extends StatelessWidget {
               height: 100,
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(20.0),
+                color: backgroundColor, // Optional background color
               ),
               child: ClipRRect(
                 borderRadius: BorderRadius.circular(20.0),
-                child: Image(
-                  image: AssetImage(image),
-                  fit: BoxFit.cover,
-                ),
+                child: isNetworkImage
+                    ? Image.network(
+                        image,
+                        fit: BoxFit.cover,
+                        errorBuilder: (context, error, stackTrace) =>
+                            const Icon(
+                          Icons.broken_image,
+                          color: Colors.grey,
+                          size: 50,
+                        ),
+                      )
+                    : Image.asset(
+                        image,
+                        fit: BoxFit.cover,
+                        errorBuilder: (context, error, stackTrace) =>
+                            const Icon(
+                          Icons.broken_image,
+                          color: Colors.grey,
+                          size: 50,
+                        ),
+                      ),
               ),
             ),
-            const SizedBox(height: 16.0 / 2),
+            const SizedBox(height: 8.0),
             SizedBox(
               width: 66,
               child: Text(
@@ -48,8 +69,9 @@ class TrendingImages extends StatelessWidget {
                     .apply(color: textColor),
                 maxLines: 1,
                 overflow: TextOverflow.ellipsis,
+                textAlign: TextAlign.center,
               ),
-            )
+            ),
           ],
         ),
       ),
