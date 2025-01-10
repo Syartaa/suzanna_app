@@ -13,18 +13,20 @@ class EventDetailScreen extends StatelessWidget {
         title: Text(event.title),
         backgroundColor: Colors.blueAccent,
       ),
-      body: Padding(
+      body: SingleChildScrollView(
         padding: const EdgeInsets.all(16.0),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             ClipRRect(
               borderRadius: BorderRadius.circular(12),
-              child: Image.asset(
+              child: Image.network(
                 event.image,
                 height: 200,
                 width: double.infinity,
                 fit: BoxFit.cover,
+                errorBuilder: (context, error, stackTrace) =>
+                    const Icon(Icons.image, size: 50),
               ),
             ),
             const SizedBox(height: 16),
@@ -37,10 +39,17 @@ class EventDetailScreen extends StatelessWidget {
             ),
             const SizedBox(height: 8),
             Text(
-              event.date,
+              "Date: ${event.eventDate} at ${event.eventTime}",
               style: const TextStyle(
                 fontSize: 18,
                 color: Colors.grey,
+              ),
+            ),
+            const SizedBox(height: 8),
+            Text(
+              "Location: ${event.location}",
+              style: const TextStyle(
+                fontSize: 16,
               ),
             ),
             const SizedBox(height: 16),

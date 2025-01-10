@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:suzanne_app/models/events.dart';
 import 'package:suzanne_app/screens/events/event_detail_screen.dart';
-import 'package:iconsax/iconsax.dart';
 
 class EventCard extends StatelessWidget {
   final Event event;
@@ -10,7 +9,6 @@ class EventCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // Get screen width for responsive scaling
     final double screenWidth = MediaQuery.of(context).size.width;
 
     return GestureDetector(
@@ -23,7 +21,7 @@ class EventCard extends StatelessWidget {
         );
       },
       child: Container(
-        width: screenWidth * 0.45, // Adjust width based on screen size
+        width: screenWidth * 0.45,
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(8.0),
           color: Colors.white,
@@ -38,19 +36,21 @@ class EventCard extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            // Dynamic height for the image
+            // Use the image URL from the event data
             SizedBox(
-              height:
-                  screenWidth * 0.3, // Dynamically adjust based on screen width
-              width: double.infinity, // Match the width of the container
+              height: screenWidth * 0.3,
+              width: double.infinity,
               child: ClipRRect(
                 borderRadius: BorderRadius.only(
                   topLeft: Radius.circular(8.0),
                   topRight: Radius.circular(8.0),
                 ),
-                child: Image.asset(
-                  event.image,
-                  fit: BoxFit.cover, // Ensures the image covers the box
+                child: Image.network(
+                  event.image ??
+                      'https://via.placeholder.com/150', // Placeholder for null image.
+                  fit: BoxFit.cover,
+                  errorBuilder: (context, error, stackTrace) =>
+                      const Icon(Icons.image, size: 50),
                 ),
               ),
             ),
@@ -59,56 +59,49 @@ class EventCard extends StatelessWidget {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  // Event title (with truncation if it's long)
                   Text(
                     event.title,
-                    style: TextStyle(
+                    style: const TextStyle(
                       fontSize: 14,
                       fontWeight: FontWeight.bold,
                     ),
-                    maxLines: 1, // Limit title to 1 line
-                    overflow: TextOverflow.ellipsis, // Truncate with ellipsis
+                    maxLines: 1,
+                    overflow: TextOverflow.ellipsis,
                   ),
-                  SizedBox(height: 4),
-                  // Event date
+                  const SizedBox(height: 4),
                   Text(
-                    event.date,
-                    style: TextStyle(
+                    event.eventDate,
+                    style: const TextStyle(
                       fontSize: 12,
                       color: Colors.grey,
                     ),
                     maxLines: 1,
-                    overflow: TextOverflow.ellipsis, // Prevent overflow
+                    overflow: TextOverflow.ellipsis,
                   ),
-                  SizedBox(height: 8),
-                  // Row with "Book Now" text and calendar icon
+                  const SizedBox(height: 8),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      // "Book Now" text
                       Flexible(
                         child: Text(
-                          "Book Now", // Or any relevant text for the event
-                          style: TextStyle(
+                          "Book Now",
+                          style: const TextStyle(
                             fontSize: 12,
-                            color: Colors
-                                .blue, // Change the color to fit your theme
+                            color: Colors.blue,
                             fontWeight: FontWeight.bold,
                           ),
-                          maxLines: 1, // Limit to 1 line
-                          overflow: TextOverflow.ellipsis, // Prevent overflow
+                          maxLines: 1,
+                          overflow: TextOverflow.ellipsis,
                         ),
                       ),
-                      // Calendar Icon Button
                       IconButton(
-                        icon: Icon(Iconsax.calendar),
+                        icon: const Icon(Icons.calendar_today),
                         onPressed: () {
                           Navigator.push(
                             context,
                             MaterialPageRoute(
-                              builder: (context) => EventDetailScreen(
-                                event: event,
-                              ),
+                              builder: (context) =>
+                                  EventDetailScreen(event: event),
                             ),
                           );
                         },
